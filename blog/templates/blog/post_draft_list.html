@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% for post in posts %}
+<article class="post">
+    <time class="date">
+        Created: {{ post.created_date }}
+    </time>
+    <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+
+    <p>{{ post.text|linebreaksbr }}</p>
+    <form action="post/{{post.id}}/publish/" method="POST">
+        {% csrf_token %}
+        <button type="submit">Publish</button>
+    </form>
+</article>
+{% endfor %}
+{% endblock %}

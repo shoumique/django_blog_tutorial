@@ -9,10 +9,7 @@
     <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
 
     <p>{{ post.text|linebreaksbr }}</p>
-    <form action="post/{{post.id}}/publish/" method="POST">
-        {% csrf_token %}
-        <button type="submit">Publish</button>
-    </form>
+    <a href="{% url 'post_publish' pk=post.pk %}">Publish</a>
 </article>
 {% endfor %}
 {% endblock %}

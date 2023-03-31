@@ -57,4 +57,18 @@ def post_draft_list(request):
     return render(request,'blog/post_draft_list.html', {'posts': posts})
 
 def publish_post(request,pk):
-    print("BUtton clicked", pk)
+    post = get_object_or_404(Post, pk=pk)
+
+    if post:
+        post.publish()
+
+    return redirect('post_draft_list')
+
+
+def unpublish_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+
+    if post:
+        post.unpublish()
+
+    return redirect('post_list')

@@ -7,6 +7,12 @@
         <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}">
             {% include './icons/pencil-fill.svg' %}
         </a>
+        {% if post.published_date %}
+        <a class="btn btn-info" href="{% url 'post_unpublish' pk=post.pk %}">Unpublish</a>
+        {% elif not post.published_date %}
+        <a class="btn btn-info" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+        {% endif %}
+        <a class="btn btn-danger" href="{% url 'post_delete' pk=post.pk %}">delete</a>
         {% endif %}
     </aside>
     {% if post.published_date %}

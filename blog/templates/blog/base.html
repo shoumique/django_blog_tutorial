@@ -18,9 +18,14 @@
                 {% include './icons/file-earmark-plus.svg' %}
             </a>
 
-            <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-
+            {% if request.path == '/' %}
+            <a href="{% url 'post_draft_list' %}" class="top-menu">Drafts</a>
+            {% elif request.path == '/drafts/' %}
+            <a href="{% url 'post_list' %}" class="top-menu">Home</a>
             {% endif %}
+            <p class="top-menu">Logged in as, {{user.username}}</p>
+            {% endif %}
+            
             <h1><a href="/">Shoumique's blog</a></h1>
         </div>
     </header>

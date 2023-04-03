@@ -8,7 +8,12 @@
     </time>
     <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
     <p>{{ post.text|linebreaksbr }}</p>
-    <a href="{% url 'post_unpublish' pk=post.pk %}">Unpublish</a>
+    {% comment %} <a href="{% url 'post_unpublish' pk=post.pk %}">Unpublish</a> {% endcomment %}
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" name="action" value="{{post.pk}}_unpublish" class="btn btn-info">Unpublish</button>
+        <button type="submit" name="action" value="{{post.pk}}_delete" class="btn btn-danger">Delete</button>
+    </form>
 </article>
 {% endfor %}
 {% endblock %}
